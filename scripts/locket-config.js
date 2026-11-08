@@ -64,6 +64,87 @@
       show_filter_button: true,
       sheet_enabled: true,
     });
+    // Camera frame overlays (from AppPre Locket_Unlocked.js), images in assets/frames/.
+    // [id, name, color1, color2]
+    var frameBase =
+      "https://vd-huy.github.io/locket-youtobe-config-shadown-rocket/assets/frames/";
+    var frames = [
+      ["sticker_binh_luan_minh_tue", "Trend Tíc Tóc", "#FF758C", "#FF7EB3"],
+      ["cmt_locket", "Locket Việt Nam", "#FF758C", "#FF7EB3"],
+      ["khung_hello_kitty_pastel_ngot_ngao", "Hello Kitty Ngọt Ngào", "#FF758C", "#FF7EB3"],
+      ["khung_hello_kitty_hong_pastel", "Khung Hello Kitty Hồng", "#FF758C", "#FF7EB3"],
+      ["khung_pastel_vien_ren", "Nơ Pastel Viền Ren", "#FF758C", "#FF7EB3"],
+      ["khung_hoa_pastel_vien_xanh_xinh", "Hoa Xinh Pastel", "#51e6e4", "#fce03f"],
+      ["khung_spiderred", "Nhện Đỏ", "#b3001e", "#b3001e"],
+      ["khung_khong_gian_xanh_pastel", "Không Gian Xanh", "#65d9fc", "#65d9fc"],
+      ["khung_ngoi_sao_hong_pastel", "Ngôi Sao Hồng", "#FF758C", "#FF7EB3"],
+      ["khung_pastel_so_hai_cau", "Sò Hải Cẩu Pastel", "#cfedfc", "#cfedfc"],
+      ["khung_shin_chan", "Shin-Chan", "#f00008", "#faed32"],
+      ["khung_anh_hellokitty_v_sao", "Hello Kitty & Sao", "#780c23", "#a94770"],
+      ["khung_xanh_tay_sao_vang", "Sao Vàng Xanh", "#6fb1d3", "#cdd64c"],
+      ["sinh_nhat_hello_kitty", "Sinh Nhật Hello Kitty", "#FF758C", "#FF7EB3"],
+      ["pb_single_y2k_silver_holo", "Khung Y2K Silver Holo", "#C4B5FD", "#E0E7FF"],
+      ["pb_single_denim_ripped", "Khung Denim Cá Tính", "#38BDF8", "#93C5FD"],
+      ["pb_single_film_nostalgia", "Khung Film Hoài Cổ", "#D6A36A", "#FDE68A"],
+    ];
+    try {
+      var frameIds = frames.map(function (f) {
+        return f[0];
+      });
+      var remote = JSON.parse(e.remote_filters || "[]");
+      if (!Array.isArray(remote)) remote = [];
+      remote = remote.filter(function (f) {
+        return !f || frameIds.indexOf(f.id) < 0;
+      });
+      frames.forEach(function (f) {
+        var url = frameBase + f[0] + ".png";
+        remote.push({
+          uid: f[0],
+          id: f[0],
+          name: f[1],
+          category: "Frames",
+          prompt: f[0],
+          style: "cutout",
+          type: "normal",
+          filterType: "cutout",
+          overlay: true,
+          imageUrl: url,
+          iconUrl: url,
+          overlayImageUrl: url,
+          overlayImageURL: url,
+          tintColor: f[2],
+          colors: [f[2], f[3]],
+          captureButtonColors: [f[2], f[3]],
+          icon: {
+            url: url,
+            iconUrl: url,
+            remoteImage: url,
+            sfSymbol: "heart.fill",
+            symbol: "heart.fill",
+            emoji: "",
+          },
+          outputUrl: null,
+          productUrl: null,
+          textColor: "#FFFFFF",
+          referenceImages: [],
+        });
+      });
+      e.remote_filters = JSON.stringify(remote);
+      var cfc = JSON.parse(e.camera_filter_config || "{}");
+      var sheet = Array.isArray(cfc.sheet_filters) ? cfc.sheet_filters : [];
+      sheet = sheet.filter(function (g) {
+        return !g || g.id !== "group_frames";
+      });
+      sheet.unshift({
+        id: "group_frames",
+        title: { en: "Khung Viền & Hot Trend 🖼️" },
+        filter_ids: ["frame_classic_pb"].concat(frameIds),
+      });
+      cfc.sheet_filters = sheet;
+      e.camera_filter_config = JSON.stringify(cfc);
+    } catch (_) {
+      /* Leave filters unchanged on unexpected server data. */
+    }
     [
       "camera_roll_preview_enabled",
       "camera_roll_video_enabled",
