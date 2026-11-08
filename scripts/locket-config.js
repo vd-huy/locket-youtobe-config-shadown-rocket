@@ -76,6 +76,24 @@
     ].forEach(function (k) {
       e[k] = "true";
     });
+    // Widget frame flags (same values as AppPre Locket_Unlocked.js, case '4').
+    e.widget_frame_event_max_images = "5";
+    e.android_widget_frame_event_enabled = "true";
+    e.widget_badge_enabled = "true";
+    e.widget_badge_v2 = "true";
+    e.widget_stale_state_enabled = "false";
+    e.widget_last_sent_indicator = "false";
+    e.widget_sync_token_reload_mode = "clearTokenNever";
+    // Frame image drawn on the home-screen widget; swap url for your own PNG.
+    e.widget_frame_event = JSON.stringify({
+      uid: "blank",
+      url: "https://i.ibb.co/1Yt1Dzzy/Shin-chan-1.png",
+      use_local_time_zone: true,
+      placement: "below",
+      start_at: "2020-01-01T00:00:00",
+      end_at: "2099-12-31T23:59:59",
+      custom_widget_frames: [],
+    });
     e.history_ads_mode = "off";
     e.send_to_self_only_mode = "always_enabled";
     e.privacy_choices_setting = "true";
