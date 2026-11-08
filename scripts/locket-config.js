@@ -87,7 +87,7 @@
     // Frame image drawn on the home-screen widget; swap url for your own PNG.
     e.widget_frame_event = JSON.stringify({
       uid: "blank",
-      url: "https://i.ibb.co/1Yt1Dzzy/Shin-chan-1.png",
+      url: "https://vd-huy.github.io/locket-youtobe-config-shadown-rocket/assets/widget-frame.png",
       use_local_time_zone: true,
       placement: "below",
       start_at: "2020-01-01T00:00:00",
