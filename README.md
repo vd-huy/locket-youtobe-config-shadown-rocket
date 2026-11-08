@@ -10,4 +10,4 @@ Kiểm tra script: https://vd-huy.github.io/locket-youtobe-config-shadown-rocket
 
 Import config vào Shadowrocket: https://vd-huy.github.io/locket-youtobe-config-shadown-rocket/Locket-YouTube.conf
 
-Mỗi khi sửa script, cập nhật file trên GitHub, chờ Pages triển khai và cập nhật script trong Shadowrocket. YouTube vẫn dùng script jsDelivr đã ghim trong config. Script chưa được kiểm thử trên iPhone; tùy chọn riêng tư không chứng minh bảo vệ phía máy chủ. Nội dung Pages công khai: không tải token hoặc dữ liệu cá nhân lên.
+Mỗi khi sửa script, cập nhật file trên GitHub, chờ Pages triển khai và cập nhật script trong Shadowrocket. YouTube dùng `scripts/youtube.response.js` (bản build 2025/3/30, chép từ dinhduyvinh09/AppPre@3d91317). Script chưa được kiểm thử trên iPhone; tùy chọn riêng tư không chứng minh bảo vệ phía máy chủ. Nội dung Pages công khai: không tải token hoặc dữ liệu cá nhân lên.
